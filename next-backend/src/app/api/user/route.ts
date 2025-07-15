@@ -1,29 +1,57 @@
+import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 
-export function GET(req : NextRequest ) {
-    
+const client = new PrismaClient();
+
+export async function GET(req : NextRequest ) {
+    try {
+        const user = await client.user.findFirst();
     //do validation here
     //hit the database here
 
     return NextResponse.json({
-        email : "harkirat@gmail.com",
-        name : "harkirat"
+        user
     })
+    }catch(e) {
+        return NextResponse.json({
+            msg : "Error while fetching",
+            e : e
+        }, {
+            status : 500
+        }
+    )
+    }
 }
 
+// psql '
 export async function POST(req : NextRequest) {
     // body 
     const body = await req.json();
-    // authorization header / headers
-     console.log(req.headers.get("authorization"));
-    // query parameters
-    console.log(req.nextUrl.searchParams.get("name"));
 
+    try {
+      await client.user.create({
+        data : {
+            email : body.email,
+            password : body.password
+        }
+        })
+        return NextResponse.json({
+            msg : "Successfully signed up",
+            body
+        })
+    }
+    catch(e) { 
+        return NextResponse.json({
+            message : "Error while signup",
+            err : e
+            
+        },{
+        status : 411 
+       }
+    )
+    }
     // hit the database with the usename , password
 
-    return NextResponse.json({
-        message : "U are signed up"
-    })
 
 }
