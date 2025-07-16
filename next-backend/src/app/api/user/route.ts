@@ -1,29 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
-
-const client = new PrismaClient();
-
-export async function GET(req : NextRequest ) {
-    try {
-        const user = await client.user.findFirst();
-    //do validation here
-    //hit the database here
-
-    return NextResponse.json({
-        user
-    })
-    }catch(e) {
-        return NextResponse.json({
-            msg : "Error while fetching",
-            e : e
-        }, {
-            status : 500
-        }
-    )
-    }
-}
-
+const client =  new PrismaClient();
 // psql '
 export async function POST(req : NextRequest) {
     // body 

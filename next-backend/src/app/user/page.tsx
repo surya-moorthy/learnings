@@ -1,17 +1,23 @@
-import axios from "axios"
+import { PrismaClient } from "@prisma/client";
+
+const client = new PrismaClient();
 
 async function fetchData() {
-    const response = await axios.get("http://localhost:3000/api/user");
-    await new Promise(r => setTimeout(r,3000));
-    console.log(JSON.stringify(response.data));
-    return response.data;
+      
+       const user = await client.user.findFirst();
+    //do validation here
+    //hit the database here
+       return {
+         email : user?.email,
+
+       }
 }
 
 export default async function User() {
     const data = await fetchData();
     return (
         <div>
-             {data.name}
+
              {data.email}
         </div>
     )
