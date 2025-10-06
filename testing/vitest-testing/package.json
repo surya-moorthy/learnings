@@ -1,0 +1,27 @@
+{
+  "name": "vitest-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/client": "^6.16.3",
+    "@types/express": "^5.0.3",
+    "express": "^5.1.0",
+    "prisma": "^6.16.3",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.4"
+  }
+}
