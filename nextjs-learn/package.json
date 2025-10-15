@@ -6,12 +6,15 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "server" : "bunx json-server --watch src/app/_data/db.json --port 3002 "
   },
   "dependencies": {
+    "json-server": "^1.0.0-beta.3",
+    "next": "15.5.5",
     "react": "19.1.0",
-    "react-dom": "19.1.0",
-    "next": "15.5.5"
+    "react-dom": "19.1.0"
+    
   },
   "devDependencies": {
     "typescript": "^5",
