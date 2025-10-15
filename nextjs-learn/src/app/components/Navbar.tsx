@@ -1,9 +1,10 @@
 import Link from "next/link";
 import LogoutButton from "./LogoutButton";
+import { getSession } from "../_lib/session";
 
-
-export default function Navbar() {
-    const session = false;
+export default async function Navbar() {
+    const session =  await getSession();
+  
     return (
         <nav className="bg-white shadow-sm">
              <div className="container flex mx-auto p-4 justify-between items-center">
