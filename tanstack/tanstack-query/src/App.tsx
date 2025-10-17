@@ -21,7 +21,10 @@ function App() {
       password : "gobwegbw[og"
     }
    mutate(user,{
-     onSuccess: (data) => {
+
+    // variables are the arguments that we pass in the mutate function
+
+     onSuccess: (data,variables) => {
       console.log("ON SUCCESS")
      queryClient.invalidateQueries({queryKey : createUsersQueryOptions().queryKey})
      console.log(data);

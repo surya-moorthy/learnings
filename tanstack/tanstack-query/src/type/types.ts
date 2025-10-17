@@ -4,3 +4,8 @@ export type UserType  ={
     email :string,
     password : string
 }
+
+export type GetUserOptions = {
+    page : number,
+    limit : number
+}
