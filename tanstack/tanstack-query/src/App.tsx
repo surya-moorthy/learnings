@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import {  useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 import Card from "./Card"
 import { createUsersQueryOptions } from "./queryoptions/createTodoQueryOptions"
@@ -8,11 +8,11 @@ import { createUsers } from "./api"
 function App() {
   const { data: users } = useQuery(createUsersQueryOptions())
 
-  const { mutate } = useMutation({
-    mutationFn: (user: Omit<UserType, "_id">) => createUsers(user),
-  })
-
   const queryClient = useQueryClient()
+
+  const {mutate} = useMutation({
+    mutationFn : (user : Omit<UserType,"_id">) => createUsers(user),
+  })
 
   const handleCreate = async () => {
     const user = {
@@ -20,20 +20,13 @@ function App() {
       email: `${Math.random().toString(36).substring(2)}@gmail.com`,
       password : "gobwegbw[og"
     }
-    mutate(user, {
-      onSuccess: (data) => {
-        queryClient.invalidateQueries({
-          queryKey: createUsersQueryOptions().queryKey,
-        })
-        console.log(data)
-      },
-      onError: (error) => {
-        console.error("An error occured: ", error)
-      },
-      onSettled: (data, error, vars, context) => {
-        console.log({ data, error, vars, context })
-      },
-    })
+   mutate(user,{
+     onSuccess: (data) => {
+      console.log("ON SUCCESS")
+     queryClient.invalidateQueries({queryKey : createUsersQueryOptions().queryKey})
+     console.log(data);
+  } 
+   });
   }
 
   return (

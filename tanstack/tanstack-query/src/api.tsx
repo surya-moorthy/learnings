@@ -12,7 +12,7 @@ export const createUsers = async (user : Omit<UserType, "_id">) => {
     email : user.email
   })
   if (!users.data) throw new Error("Failed tp fetch Users")
-  return users.data();
+  return users.data;
 }
 
 export const getUsers = async () => {

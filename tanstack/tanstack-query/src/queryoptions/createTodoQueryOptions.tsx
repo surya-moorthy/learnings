@@ -5,8 +5,8 @@ import { getUsers } from "../api";
 export function createUsersQueryOptions() {
   return queryOptions({
     queryKey : ["users"],
-    queryFn : getUsers,
-    staleTime : 6000,
+    queryFn : getUsers
   })
 }
+
 
