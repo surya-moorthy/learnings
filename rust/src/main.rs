@@ -1,27 +1,13 @@
 fn main() {
-    let result = read_username_from_file();
-    match result {
-        Ok(file) => {print!("{}",file);},
-        Err(err) => {panic!("{}",err);}
+    let string1 = String::from("long string is long");
+
+    {
+        let string2 = String::from("xyz");
+        let result = longest(string1.as_str(), string2.as_str());
+        println!("The longest string is {result}");
     }
 }
 
-
-use std::fs::File;
-use std::io::{self, Read};
-
-fn read_username_from_file() -> Result<String, io::Error> {
-    let username_file_result = File::open("hello.txt");
-
-    let mut username_file = match username_file_result {
-        Ok(file) => file,
-        Err(e) => return Err(e),
-    };
-
-    let mut username = String::new();
-
-    match username_file.read_to_string(&mut username) {
-        Ok(_) => Ok(username),
-        Err(e) => Err(e),
-    }
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() { x } else { y }
 }
