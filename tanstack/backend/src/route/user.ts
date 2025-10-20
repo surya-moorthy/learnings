@@ -4,7 +4,7 @@ import { UserModal } from "../db/db";
 export const userRouter = Router();
 
 type UserType = {
-    name : string,
+    username : string,
     email : string,
     password : string
 }
@@ -16,7 +16,7 @@ userRouter.post("/create",async (req : Request,res : Response)=> {
         // proper error validation
 
         const userResponse = await UserModal.create({
-            username : user.name,
+            username : user.username,
             email : user.email,
             password : user.password
         })
@@ -30,7 +30,8 @@ userRouter.post("/create",async (req : Request,res : Response)=> {
 
     }catch(err) {
         res.status(500).json({
-            message : " Internal Server Error"
+            message : " Internal Server Error",
+            error : err
         })
     }
 })
