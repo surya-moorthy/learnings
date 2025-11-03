@@ -23,7 +23,26 @@ let news = [
 server.addService(newsPhoto.NewsService.service, {
     getAllNews: (_,callback) => {
         callback(null , {news});
+    },
+    insertNews : (call,callback) => {
+        const _news = { id : Date.now().toString(), ...call.request }; 
+        news.push(_news);
+        callback(null , _news)
+    },
+    deleteNews : (_,callback) => {
+        const newsId = _.request.id;
+        news = news.filter(({id}) => {id => id !== newsId});
+        callback(null , {})
+    },
+    editNews : (_,callback) => {
+        const newsId = _.request.id;
+        const newsItem = news.find(({id}) => id => newsId == id);
+        newsItem.body = _.request.body;
+        newsItem.postImage = _.request.postImage;
+        newsItem.title = _.request.title;
+        callback(null , newsItem);
     }
+
 })
 
 server.bindAsync(

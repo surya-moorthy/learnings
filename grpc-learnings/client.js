@@ -17,6 +17,12 @@ const packageDefinition = protoLoader.loadSync(PROTO_PATH, options);
 const protoDescriptor = grpc.loadPackageDefinition(packageDefinition);
 const NewsService = protoDescriptor.NewsService;
 
+const NewNews = {
+    title : "title 1",
+    body : "body 1",
+    postImage : "ppagfweg"
+}
+
 const client = new NewsService(
   "localhost:50051",
   grpc.credentials.createInsecure()
@@ -29,3 +35,9 @@ client.GetAllNews({}, (error, news) => {
     console.log("News:", news);
   }
 });
+
+client.AddNews()
+
+console.log("........");
+
+client.InsertNews({})
