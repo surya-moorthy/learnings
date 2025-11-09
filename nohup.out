@@ -1,0 +1,10 @@
+updated value of a :5
+updated value of a :10
+updated value of a :15
+updated value of a :20
+updated value of a :25
+Traceback (most recent call last):
+  File "/home/surya/surya/learnings/python.py", line 9, in <module>
+    time.sleep(3)
+    ~~~~~~~~~~^^^
+KeyboardInterrupt
